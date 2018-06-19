@@ -5,9 +5,9 @@ public class Person {
     private String pesel;
 
 
-    public Person(String firstName, String lastName, int age, String pesel) {
+    public Person(String firstName, String lastName, int age, String pesel) throws IncorrectAgeException, NameUndefinedException {
 
-        if (!validationWord(firstName))
+        if(!validationWord(firstName))
             throw new NameUndefinedException();
         else
             this.firstName = firstName;
@@ -22,21 +22,25 @@ public class Person {
         this.pesel = pesel;
     }
 
+
     @Override
     public String toString() {
-        return "Person{" + "firstName='" + firstName + '\''
-                + ", lastName='" + lastName + '\''
-                + ", age=" + age + ", pesel='" + pesel + '\'' +
+
+        return "Person{" +
+                "firstName= " + firstName +
+                ", lastName= " + lastName +
+                ", age= " + age +
+                ", pesel= " + pesel +
                 '}';
     }
-    private boolean validationWord(String word) {
+    private boolean validationWord (String word){
         if (word == null)
             return false;
         if (word.length() < 3)
             return false;
         return true;
     }
-    private boolean validationAge(int age) {
+    private boolean validationAge(int age){
         if (age < 1)
             return false;
         return true;
@@ -47,11 +51,9 @@ public class Person {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
